@@ -1,0 +1,15 @@
+<div data-role="content" class="content">
+  <h1> This is the band's concert info</h1>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4>Upcoming Concerts for <%= @band.name %></h4>
+    </div>
+    <% @band.concerts.each do |concert| %>
+    <div class="list-group-item">
+
+        <p><%= concert.date %>, <%= concert.venue %>, <%= concert.city %></p>
+
+    </div>
+    <% end %>
+  </div>
+</div>
