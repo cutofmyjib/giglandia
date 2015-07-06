@@ -1,6 +1,6 @@
 get '/' do
   if session[:user_id]
-    @user = User.find(session[:user_id])
+    find_user_id
     redirect "/users/#{session[:user_id]}"
   else
     erb :index
@@ -13,7 +13,7 @@ get '/sessions/new' do
   erb :sign_in
 end
 
-post '/session' do
+post '/sessions' do
   @user = User.find_by(email: params[:session][:email])
   if @user && @user.password == params[:password]
     log_in(@user)
@@ -35,7 +35,7 @@ get '/users/new' do
 end
 
 get '/users/:user_id' do
-  @user = User.find(session[:user_id])
+  @user = current_user
   erb :show
 end
 

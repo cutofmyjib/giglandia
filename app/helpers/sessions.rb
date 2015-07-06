@@ -20,4 +20,8 @@ helpers do
     @current_user = nil
   end
 
+  def find_user_id
+    @user = User.find(session[:user_id])
+  end
+
 end
