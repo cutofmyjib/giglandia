@@ -14,12 +14,12 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  @user = User.find_by(email: params[:session][:email])
+  @user = User.find_by(email: params[:email])
   if @user && @user.password == params[:password]
     log_in(@user)
     redirect "/users/#{@user.id}"
   else
-    @errors = @user.errors
+    @errors = ["check username and password"]
     erb :sign_in
   end
 end
@@ -45,9 +45,9 @@ post '/users' do
   create #see helper method
   if @user.save
     log_in(@user)
-    redirect '/'
+    redirect "/users/#{@user.id}"
   else
-    @errors = @user.errors
+    @errors = @user.errors.full_messages
     erb :sign_up
   end
 end
