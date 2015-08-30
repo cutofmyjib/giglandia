@@ -1,10 +1,9 @@
 <div data-role="content" class="content">
   <h1>Sign In</h1>
   <% if @errors %>
-    <div role="alert">
-      <em>Error:</em>
-      Please enter email address and password correctly.
-    </div>
+    <% @errors.each do |error| %>
+    <p><input type="text" data-theme="e" value="<%= error %>" /></p>
+    <% end %>
   <% end %>
 
   <form method="post" action="/sessions">
