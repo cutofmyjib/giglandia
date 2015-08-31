@@ -19,8 +19,6 @@ post '/sessions' do
     log_in(@user)
     redirect "/users/#{@user.id}"
   else
-    p "***********"
-    p @user
     @errors = ["check username and password"]
     erb :sign_in
   end
