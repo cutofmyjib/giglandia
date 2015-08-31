@@ -10,7 +10,7 @@ helpers do
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(username: params[:username], email: params[:email])
     @user.password = params[:password]
     @user.save
   end
