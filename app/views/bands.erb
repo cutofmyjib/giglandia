@@ -1,6 +1,11 @@
 <div data-role="content" class="content">
   <h1>Find a band</small></h1>
     <form method="post" action="/bands">
-      <input type="search" name="search-band" id="search-mini" value="" data-mini="true" />
+      <input type="search" name="search_band" id="search-mini" value="" data-mini="true" />
     </form>
+    <% if @bands %>
+      <% @bands.results.map do |band| %>
+        <p><%= band.display_name %></p>
+      <% end %>
+    <% end %>
 </div>
