@@ -1,8 +1,11 @@
 <div data-role="content" class="content">
-  <h1>This is the bands page <small>Start following</small></h1>
-    <% @bands.each do |band| %>
-      <p>
-        <%= band.name %> - <a href ="bands/<%=band.id%>/follow">follow</a>
-      </p>
+  <h1>Find a band</small></h1>
+    <form method="post" action="/bands">
+      <input type="search" name="search_band" id="search-mini" value="" data-mini="true" />
+    </form>
+    <% if @bands %>
+      <% @bands.results.map do |band| %>
+        <p><%= band.display_name %></p>
+      <% end %>
     <% end %>
 </div>

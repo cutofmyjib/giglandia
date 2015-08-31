@@ -1,3 +1,7 @@
+require 'songkickr'
+require 'dotenv'
+Dotenv.load
+
 get '/' do
   if session[:user_id]
     find_user_id
@@ -62,7 +66,13 @@ end
 #----------- BANDS -----------
 
 get '/bands' do
-  @bands = Band.all
+  erb :bands
+end
+
+post '/bands' do
+  remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  query = params[:search_band]
+  @bands = remote.events(query)
   erb :bands
 end
 
