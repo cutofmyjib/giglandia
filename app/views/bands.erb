@@ -1,8 +1,6 @@
 <div data-role="content" class="content">
-  <h1>This is the bands page <small>Start following</small></h1>
-    <% @bands.each do |band| %>
-      <p>
-        <%= band.name %> - <a href ="bands/<%=band.id%>/follow">follow</a>
-      </p>
-    <% end %>
+  <h1>Find a band</small></h1>
+    <form method="post" action="/bands">
+      <input type="search" name="search-band" id="search-mini" value="" data-mini="true" />
+    </form>
 </div>

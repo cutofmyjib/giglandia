@@ -62,8 +62,10 @@ end
 #----------- BANDS -----------
 
 get '/bands' do
-  @bands = Band.all
   erb :bands
+end
+
+post '/bands' do
 end
 
 get '/bands/:band_id/follow' do
