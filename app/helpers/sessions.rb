@@ -9,6 +9,10 @@ helpers do
     session[:user_id] = user.id
   end
 
+  def check_length(password)
+    password.length >= 6
+  end
+
   def create
     @user = User.new(username: params[:username], email: params[:email])
     @user.password = params[:password]

@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
 
-  validates :username, :password, presence: true
+  validates :username, presence: true
   validates :email, uniqueness: true
-  has_many :fans
-  has_many :bands, through: :fans
+  has_many  :fans
+  has_many  :bands, through: :fans
 
   include BCrypt
 

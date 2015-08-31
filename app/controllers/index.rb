@@ -42,14 +42,21 @@ end
 
 post '/users' do
   # sign-up a new user
-  create #see helper method
-  if @user.save
-    log_in(@user)
-    redirect "/users/#{@user.id}"
+  #see helper method
+  if check_length(params[:password])
+    create
+    if @user.save
+      log_in(@user)
+      redirect "/users/#{@user.id}"
+    else
+      @errors = @user.errors.full_messages
+      erb :sign_up
+    end
   else
-    @errors = @user.errors.full_messages
+    @errors = ["password should be more than 6 characters"]
     erb :sign_up
   end
+
 end
 
 #----------- BANDS -----------
