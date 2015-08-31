@@ -14,11 +14,13 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  @user = User.find_by(email: params[:email])
+  @user = User.where(email: params[:email]).first
   if @user && @user.password == params[:password]
     log_in(@user)
     redirect "/users/#{@user.id}"
   else
+    p "***********"
+    p @user
     @errors = ["check username and password"]
     erb :sign_in
   end
