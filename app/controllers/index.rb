@@ -70,7 +70,6 @@ get '/bands' do
 end
 
 post '/bands' do
-
   remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
   query = params[:search_band]
   @bands = remote.events(query)
