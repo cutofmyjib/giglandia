@@ -7,6 +7,8 @@ gem 'pg'
 # Sinatra driver
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'dotenv'
+gem 'songkickr'
 
 # Use Thin for our web server
 gem 'thin'
