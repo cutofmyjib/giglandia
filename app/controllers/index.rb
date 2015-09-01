@@ -1,6 +1,9 @@
 require 'songkickr'
 require 'dotenv'
 Dotenv.load
+require 'rubygems'
+require 'httparty'
+
 
 get '/' do
   if session[:user_id]
@@ -70,9 +73,10 @@ get '/bands' do
 end
 
 post '/bands' do
-  remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  p "*" * 80
   query = params[:search_band]
-  @bands = remote.events(query)
+  p query
+  @bands = HTTParty.get("http://api.songkick.com/api/3.0/artists/query/calendar.json?apikey=ENV['SONGKICK_KEY']")
   erb :bands
 end
 
@@ -85,6 +89,10 @@ end
 
 get '/bands/:band_id' do
   @band = Band.find(params[:band_id])
+
+  remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  query = params[:search_band]
+  @bands = remote.events(query)
   erb :show_band
 end
 
