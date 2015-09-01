@@ -72,11 +72,8 @@ get '/bands' do
 end
 
 post '/bands' do
-  p "*" * 80
   band_name = params[:search_band]
-  p band_name
   @bands = HTTParty.get("http://api.songkick.com/api/3.0/search/artists.json?query=#{band_name}&apikey=#{ENV['SONGKICK_KEY']}").to_hash
-  p @bands
   erb :bands
 end
 
@@ -89,11 +86,11 @@ end
 
 get '/bands/:band_id' do
   @band = Band.find(params[:band_id])
-
-  remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
-  query = params[:search_band]
-  @bands = remote.events(query)
-  erb :show_band
+  #use later
+  # remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  # query = params[:search_band]
+  # @bands = remote.events(query)
+  # erb :show_band
 end
 
 
