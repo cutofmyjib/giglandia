@@ -3,9 +3,10 @@
     <form method="post" action="/bands">
       <input type="search" name="search_band" id="search-mini" value="" data-mini="true" />
     </form>
+
     <% if @bands %>
-      <% @bands.results.map do |band| %>
-        <p><%= band.display_name %></p>
+      <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
+        <p><%= band["displayName"] %></p>
       <% end %>
     <% end %>
 </div>

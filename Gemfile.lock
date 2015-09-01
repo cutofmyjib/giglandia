@@ -85,6 +85,7 @@ DEPENDENCIES
   dotenv
   factory_girl
   faker
+  httparty
   pg
   rack-test
   rake

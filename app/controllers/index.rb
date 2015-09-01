@@ -1,6 +1,8 @@
 require 'songkickr'
 require 'dotenv'
 Dotenv.load
+require 'httparty'
+
 
 get '/' do
   if session[:user_id]
@@ -70,9 +72,8 @@ get '/bands' do
 end
 
 post '/bands' do
-  remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
-  query = params[:search_band]
-  @bands = remote.events(query)
+  band_name = params[:search_band]
+  @bands = HTTParty.get("http://api.songkick.com/api/3.0/search/artists.json?query=#{band_name}&apikey=#{ENV['SONGKICK_KEY']}").to_hash
   erb :bands
 end
 
@@ -85,7 +86,11 @@ end
 
 get '/bands/:band_id' do
   @band = Band.find(params[:band_id])
-  erb :show_band
+  #use later
+  # remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  # query = params[:search_band]
+  # @bands = remote.events(query)
+  # erb :show_band
 end
 
 

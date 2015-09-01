@@ -8,6 +8,7 @@ gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'dotenv'
+gem 'httparty'
 gem 'songkickr'
 
 # Use Thin for our web server
