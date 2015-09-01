@@ -5,8 +5,8 @@
     </form>
 
     <% if @bands %>
-      <% @bands.to_hash.map do |band| %>
-        <p><%= band.display_name %></p>
+      <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
+        <p><%= band["displayName"] %></p>
       <% end %>
     <% end %>
 </div>
