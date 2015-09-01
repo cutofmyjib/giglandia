@@ -1,7 +1,6 @@
 require 'songkickr'
 require 'dotenv'
 Dotenv.load
-require 'rubygems'
 require 'httparty'
 
 
@@ -74,9 +73,10 @@ end
 
 post '/bands' do
   p "*" * 80
-  query = params[:search_band]
-  p query
-  @bands = HTTParty.get("http://api.songkick.com/api/3.0/artists/query/calendar.json?apikey=ENV['SONGKICK_KEY']")
+  band_name = params[:search_band]
+  p band_name
+  @bands = HTTParty.get("http://api.songkick.com/api/3.0/search/artists.json?query=#{band_name}&apikey=#{ENV['SONGKICK_KEY']}").to_hash
+  p @bands
   erb :bands
 end
 
