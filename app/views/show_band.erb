@@ -1,5 +1,9 @@
 <div data-role="content" class="content">
-  <h1><%= @band.display_name %></h1>
+  <h1>
+    <%= @band.display_name %>
+
+    <a href="/bands/<%=@band.id%>/follow" data-role="button" data-inline="true" data-theme="b" data-icon="plus" data-iconpos="notext">Follow</a>
+  </h1>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h4>Upcoming Concerts</h4>
