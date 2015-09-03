@@ -4,10 +4,13 @@
     <div class="panel-heading">
       <h4>Upcoming Concerts</h4>
     </div>
+    <% if @events %>
+      <% @events.results.map do |event| %>
+      <div class="list-group-item">
+        <p><%= event.display_name %></p>
 
-    <div class="list-group-item">
-
-    </div>
-
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
