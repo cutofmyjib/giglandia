@@ -85,12 +85,13 @@ get '/bands/:band_id/follow' do
 end
 
 get '/bands/:band_id' do
-  @band = Band.find(params[:band_id])
-  #use later
-  # remote = Songkickr::Remote.new ENV['SONGKICK_KEY']
-  # query = params[:search_band]
-  # @bands = remote.events(query)
-  # erb :show_band
+  query = Songkickr::Remote.new ENV['SONGKICK_KEY']
+  @band = query.artist(params[:band_id])
+  p @band
+  @events = query.events(@band.display_name)
+  p "*" * 80
+  p @events
+  erb :show_band
 end
 
 
