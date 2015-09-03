@@ -6,7 +6,7 @@
 
     <% if @bands %>
       <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
-        <p><a href="/show_band"><%= band["displayName"] %></a></p>
+        <p><a href="/bands/<%=band["id"]%>"><%= band["displayName"] %></a></p>
       <% end %>
     <% end %>
 </div>
