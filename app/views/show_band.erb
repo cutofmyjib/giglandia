@@ -1,15 +1,16 @@
 <div data-role="content" class="content">
-  <h1> This is the band's concert info</h1>
+  <h1><%= @band.display_name %></h1>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h4>Upcoming Concerts for <%= @band.name %></h4>
+      <h4>Upcoming Concerts</h4>
     </div>
-    <% @band.concerts.each do |concert| %>
-    <div class="list-group-item">
+    <% if @events %>
+      <% @events.results.map do |event| %>
+      <div class="list-group-item">
+        <p><%= event.display_name %></p>
 
-        <p><%= concert.date %>, <%= concert.venue %>, <%= concert.city %></p>
-
-    </div>
+      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
