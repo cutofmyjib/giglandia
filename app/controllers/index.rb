@@ -87,10 +87,7 @@ end
 get '/bands/:band_id' do
   query = Songkickr::Remote.new ENV['SONGKICK_KEY']
   @band = query.artist(params[:band_id])
-  p @band
   @events = query.events(@band.display_name)
-  p "*" * 80
-  p @events
   erb :show_band
 end
 
