@@ -47,8 +47,7 @@ end
 
 
 post '/users' do
-  # sign-up a new user
-  #see helper method
+  #sign-up a new user
   if check_length(params[:password])
     create
     if @user.save
@@ -81,13 +80,7 @@ get '/bands/:band_id/follow' do
   @user = current_user
   @user.follow(params[:band_id].to_i)
   fave_band_ids = @user.bands
-  @bands = []
-  if fave_band_ids.length > 0
-    fave_band_ids.each do |band|
-      query = Songkickr::Remote.new ENV['SONGKICK_KEY']
-      @bands.push(query.artist(band.songkick_id))
-    end
-  end
+  @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
   erb :show
 end
 
