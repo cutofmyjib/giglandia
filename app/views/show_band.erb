@@ -5,14 +5,11 @@
     <a href="/bands/<%=@band.id%>/follow" data-role="button" data-inline="true" data-theme="b" data-icon="plus" data-iconpos="notext">Follow</a>
   </h1>
   <div class="panel panel-primary">
-    <div class="panel-heading">
+    <% if @events.length > 0 %>
       <h4>Upcoming Concerts</h4>
-    </div>
-    <% if @events %>
-      <% @events.results.map do |event| %>
+      <% @events.map do |event| %>
       <div class="list-group-item">
         <p><%= event.display_name %></p>
-
       </div>
       <% end %>
     <% end %>

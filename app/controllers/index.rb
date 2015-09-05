@@ -42,6 +42,8 @@ end
 
 get '/users/:user_id' do
   @user = current_user
+  fave_band_ids = @user.bands.map(&:songkick_id)
+  @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
   erb :show
 end
 
@@ -79,15 +81,15 @@ end
 get '/bands/:band_id/follow' do
   @user = current_user
   @user.follow(params[:band_id].to_i)
-  fave_band_ids = @user.bands
+  fave_band_ids = @user.bands.map(&:songkick_id)
   @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
   erb :show
 end
 
 get '/bands/:band_id' do
-  query = Songkickr::Remote.new ENV['SONGKICK_KEY']
-  @band = query.artist(params[:band_id])
-  @events = query.events(@band.display_name)
+  @band = get_songkick_name([params[:band_id]]).first
+  band_events = get_events(@band.display_name)
+  @events = band_events.results
   erb :show_band
 end
 
