@@ -81,16 +81,13 @@ get '/bands/:band_id/follow' do
   query = Songkickr::Remote.new ENV['SONGKICK_KEY']
   @user = current_user
   @band = query.artist(params[:band_id])
-  # FIX raise_on_type_mismatch!
-  @user.follow @band.display_name
+  @user.follow(params[:band_id].to_i)
   erb :show
 end
 
 get '/bands/:band_id' do
   query = Songkickr::Remote.new ENV['SONGKICK_KEY']
   @band = query.artist(params[:band_id])
-  p @band
-  p @band.display_name
   @events = query.events(@band.display_name)
   erb :show_band
 end

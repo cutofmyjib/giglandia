@@ -3,10 +3,7 @@
   <small>Hi <%= @user.username %></small></h1>
   <h4>Bands you follow</h4>
   <div>
-    <% @user.bands.each do |band| %>
-    <p><a href="/bands/<%= band.id %>"><%= band.name %> - <%= band.concerts.count %></p>
-    <% end %>
-    </a>
+
 
   </div>
 </div>
