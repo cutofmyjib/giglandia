@@ -78,10 +78,16 @@ post '/bands' do
 end
 
 get '/bands/:band_id/follow' do
-  query = Songkickr::Remote.new ENV['SONGKICK_KEY']
   @user = current_user
-  @band = query.artist(params[:band_id])
   @user.follow(params[:band_id].to_i)
+  fave_band_ids = @user.bands
+  @bands = []
+  if fave_band_ids.length > 0
+    fave_band_ids.each do |band|
+      query = Songkickr::Remote.new ENV['SONGKICK_KEY']
+      @bands.push(query.artist(band.songkick_id))
+    end
+  end
   erb :show
 end
 
