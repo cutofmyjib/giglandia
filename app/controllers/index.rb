@@ -42,13 +42,14 @@ end
 
 get '/users/:user_id' do
   @user = current_user
+  fave_band_ids = @user.bands.map(&:songkick_id)
+  @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
   erb :show
 end
 
 
 post '/users' do
-  # sign-up a new user
-  #see helper method
+  #sign-up a new user
   if check_length(params[:password])
     create
     if @user.save
@@ -79,18 +80,16 @@ end
 
 get '/bands/:band_id/follow' do
   @user = current_user
-  @band = Band.find(params[:band_id])
-  @user.follow @band
+  @user.follow(params[:band_id].to_i)
+  fave_band_ids = @user.bands.map(&:songkick_id)
+  @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
   erb :show
 end
 
 get '/bands/:band_id' do
-  query = Songkickr::Remote.new ENV['SONGKICK_KEY']
-  @band = query.artist(params[:band_id])
-  p @band
-  @events = query.events(@band.display_name)
-  p "*" * 80
-  p @events
+  @band = get_songkick_name([params[:band_id]]).first
+  band_events = get_events(@band.display_name)
+  @events = band_events.results
   erb :show_band
 end
 

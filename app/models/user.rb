@@ -16,8 +16,15 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def follow band_name
-    self.bands << band_name
+  def follow(band_id)
+    fav = Band.where(songkick_id: band_id).first
+    user_fav = self.bands.where(songkick_id: band_id).first
+    if fav
+      self.bands << fav unless user_fav
+    else
+      fav = Band.create(songkick_id: band_id)
+      self.bands << fav
+    end
   end
 
 end
