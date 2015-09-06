@@ -41,7 +41,6 @@ get '/users/:user_id' do
   erb :show
 end
 
-
 post '/users' do
   #sign-up a new user
   if check_length(params[:password])
@@ -86,5 +85,3 @@ get '/bands/:band_id' do
   @events = band_events.results
   erb :show_band
 end
-
-

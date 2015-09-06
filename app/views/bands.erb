@@ -5,11 +5,11 @@
     </form>
 
     <% if @bands %>
-      <ul data-role="listview" data-inset="true">
+      <ul data-role="listview" data-inset="true" data-count-theme="b">
       <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
         <li>
           <a href="/bands/<%=band["id"]%>">
-          <h2><%= band["displayName"] %></h2></a>
+          <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2></a>
         </li>
       <% end %>
       </ul>
