@@ -1,9 +1,3 @@
-require 'songkickr'
-require 'dotenv'
-Dotenv.load
-require 'httparty'
-
-
 get '/' do
   if session[:user_id]
     find_user_id
