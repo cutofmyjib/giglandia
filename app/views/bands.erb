@@ -5,8 +5,13 @@
     </form>
 
     <% if @bands %>
+      <ul data-role="listview" data-inset="true">
       <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
-        <p><a href="/bands/<%=band["id"]%>"><%= band["displayName"] %></a></p>
+        <li>
+          <a href="/bands/<%=band["id"]%>">
+          <h2><%= band["displayName"] %></h2></a>
+        </li>
       <% end %>
+      </ul>
     <% end %>
 </div>
