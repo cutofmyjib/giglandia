@@ -1,17 +1,24 @@
 <div data-role="content" class="content">
   <h1>Find a band</small></h1>
-    <form method="post" action="/bands">
-      <input type="search" name="search_band" id="search-mini" value="" data-mini="true" />
-    </form>
+  <form method="post" action="/bands">
+    <input type="search" name="search_band" id="search-mini" value="" data-mini="true" />
+  </form>
 
-    <% if @bands %>
-      <ul data-role="listview" data-inset="true" data-count-theme="b">
-      <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
-        <li>
-          <a href="/bands/<%=band["id"]%>">
-          <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2></a>
-        </li>
-      <% end %>
-      </ul>
+  <div class="ui-grid-c ui-responsive">
+    <div class="ui-block-a"></div>
+    <div class="ui-block-b"></div>
+    <div class="ui-block-c"></div>
+    <div class="ui-block-d"><img src="/songkick.png" /></div>
+  </div>
+
+  <% if @bands %>
+    <ul data-role="listview" data-inset="true" data-count-theme="b">
+    <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
+      <li>
+        <a href="/bands/<%=band["id"]%>">
+        <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2></a>
+      </li>
     <% end %>
+    </ul>
+  <% end %>
 </div>
