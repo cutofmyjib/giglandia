@@ -67,7 +67,11 @@ end
 
 post '/bands' do
   band_name = params[:search_band]
-  @bands = HTTParty.get("http://api.songkick.com/api/3.0/search/artists.json?query=#{band_name}&apikey=#{ENV['SONGKICK_KEY']}").to_hash
+  # @bands = HTTParty.get("http://api.songkick.com/api/3.0/search/artists.json?query=#{band_name}&apikey=#{ENV['SONGKICK_KEY']}").to_hash
+  bands = Songkick::Client.new
+  @bands = bands.find_artist(band_name)
+  p "*" * 90
+  p @bands
   erb :bands
 end
 
