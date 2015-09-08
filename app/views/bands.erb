@@ -12,11 +12,15 @@
   </div>
 
   <% if @bands %>
-    <ul data-role="listview" data-inset="true" data-count-theme="b">
+    <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
     <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
       <li>
         <a href="/bands/<%=band["id"]%>">
-        <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2></a>
+        <div class="thumbnail">
+          <img src="http://fc01.deviantart.net/fs70/f/2012/089/a/8/rainbow_cat_by_cadaverousjc-d4uegwp.jpg" />
+        </div>
+        <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
+        </a>
       </li>
     <% end %>
     </ul>
