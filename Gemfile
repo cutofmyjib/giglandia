@@ -10,6 +10,7 @@ gem 'sinatra-contrib'
 gem 'dotenv'
 gem 'httparty'
 gem 'songkickr'
+gem 'echowrap'
 
 # Use Thin for our web server
 gem 'thin'
