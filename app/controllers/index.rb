@@ -68,11 +68,13 @@ end
 post '/bands' do
   bands = Songkick::Client.new
   @bands = bands.find_artist(params[:band_name])
-  if @bands
-    band_ids = []
+  band_ids = []
+  if @bands["resultsPage"]["results"].length > 0
     @bands["resultsPage"]["results"]["artist"].map do |band|
       band_ids.push(band["id"])
     end
+  else
+    @errors = ["band not found"]
   end
 
   if band_ids.length > 0 && band_ids.length < 20
