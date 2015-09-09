@@ -13,12 +13,14 @@
 
   <% if @bands %>
     <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
-    <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
+    <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
       <li>
-        <a href="/bands/<%=band["id"]%>">
+        <a href="/bands/<%=band['id']%>">
+        <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
         <div class="thumbnail">
-          <img src="http://lorempixel.com/g/400/200/" />
+          <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
         </div>
+        <% end %>
         <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
         </a>
       </li>

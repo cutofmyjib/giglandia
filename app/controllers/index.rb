@@ -68,17 +68,21 @@ end
 post '/bands' do
   bands = Songkick::Client.new
   @bands = bands.find_artist(params[:band_name])
-  band_ids = []
-  @bands["resultsPage"]["results"]["artist"].map do |band|
-    band_ids.push(band["id"])
+  if @bands
+    band_ids = []
+    @bands["resultsPage"]["results"]["artist"].map do |band|
+      band_ids.push(band["id"])
+    end
   end
 
-  if band_ids.length < 20
+  if band_ids.length > 0 && band_ids.length < 20
     @thumbnails = get_thumbnails(band_ids)
   else
     shorter_band_ids = band_ids.slice(0, 15)
     @thumbnails = get_thumbnails(shorter_band_ids)
   end
+  p "*" * 90
+  p @thumbnails
   erb :bands
 end
 
