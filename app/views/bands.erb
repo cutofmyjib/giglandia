@@ -1,5 +1,11 @@
 <div data-role="content" class="content">
   <h1>Find a band</small></h1>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+    <p><input type="text" data-theme="e" value="<%= error %>" /></p>
+    <% end %>
+  <% end %>
+
   <form method="post" action="/bands">
     <input type="search" name="band_name" id="search-mini" value="" data-mini="true" />
   </form>
@@ -11,18 +17,20 @@
     <div class="ui-block-d"><img src="/songkick.png" /></div>
   </div>
 
-  <% if @bands %>
-    <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
-    <% @bands["resultsPage"]["results"]["artist"].map do |band| %>
-      <li>
-        <a href="/bands/<%=band["id"]%>">
-        <div class="thumbnail">
-          <img src="http://lorempixel.com/g/400/200/" />
-        </div>
-        <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
-        </a>
-      </li>
+  <% if @bands && @bands["resultsPage"]["results"].length > 0 %>
+      <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
+      <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
+        <li>
+          <a href="/bands/<%=band['id']%>">
+            <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
+              <div class="thumbnail">
+                <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
+              </div>
+            <% end %>
+            <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
+          </a>
+        </li>
+      </ul>
     <% end %>
-    </ul>
   <% end %>
 </div>

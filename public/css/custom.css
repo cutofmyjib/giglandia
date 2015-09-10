@@ -5,11 +5,13 @@
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 80px;
+    text-align: center;
 }
+
 .thumbnail img {
     position: absolute;
     margin: auto;
     bottom: 0; left: 0; top: 0; right: 0;
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 75px;
+    max-height: 63px;
 }
