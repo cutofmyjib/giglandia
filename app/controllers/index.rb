@@ -83,8 +83,9 @@ post '/bands' do
     shorter_band_ids = band_ids.slice(0, 15)
     @thumbnails = get_thumbnails(shorter_band_ids)
   end
+
   p "*" * 90
-  p @thumbnails
+  p @bands
   erb :bands
 end
 

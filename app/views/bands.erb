@@ -17,20 +17,22 @@
     <div class="ui-block-d"><img src="/songkick.png" /></div>
   </div>
 
-  <% if @bands["resultsPage"]["results"].length > 0 %>
-    <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
-    <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
-      <li>
-        <a href="/bands/<%=band['id']%>">
-          <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
-          <div class="thumbnail">
-            <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
-          </div>
-          <% end %>
-          <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
-        </a>
-      </li>
+  <% if @bands %>
+    <% if @bands["resultsPage"]["results"].length > 0 %>
+      <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
+      <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
+        <li>
+          <a href="/bands/<%=band['id']%>">
+            <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
+              <div class="thumbnail">
+                <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
+              </div>
+            <% end %>
+            <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
+          </a>
+        </li>
+      <% end %>
+      </ul>
     <% end %>
-    </ul>
   <% end %>
 </div>
