@@ -1,16 +1,18 @@
 helpers do
+  def query_songkick
+    Songkickr::Remote.new ENV['SONGKICK_KEY']
+  end
+
   def get_songkick_name(band_ids)
     bands = []
     band_ids.each do |id|
-      query = Songkickr::Remote.new ENV['SONGKICK_KEY']
-      bands.push(query.artist(id))
+      bands.push(query_songkick.artist(id))
     end
     bands
   end
 
   def get_events(artist_name)
-    query = Songkickr::Remote.new ENV['SONGKICK_KEY']
-    query.events(artist_name)
+    query_songkick.events(artist_name)
   end
 
   def get_thumbnails(band_ids)

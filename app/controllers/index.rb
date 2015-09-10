@@ -86,6 +86,10 @@ post '/bands' do
 
   p "*" * 90
   p @bands
+  band_ids.each do |id|
+    p "^" * 90
+    puts @event_count = bands.find_events(id)
+  end
   erb :bands
 end
 
