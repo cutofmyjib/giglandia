@@ -66,7 +66,7 @@ get '/bands' do
 end
 
 post '/bands' do
-  bands = Songkick::Client.new
+  bands = init_songkick
   @bands = bands.find_artist(params[:band_name])
   band_ids = []
   if @bands["resultsPage"]["results"].length > 0
@@ -84,12 +84,7 @@ post '/bands' do
     @thumbnails = get_thumbnails(shorter_band_ids)
   end
 
-  p "*" * 90
-  p @bands
-  band_ids.each do |id|
-    p "^" * 90
-    puts @event_count = bands.find_events(id)
-  end
+  @gig_count = get_gig_count(band_ids)
   erb :bands
 end
 

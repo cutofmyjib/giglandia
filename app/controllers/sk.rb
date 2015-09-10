@@ -19,7 +19,7 @@ module Songkick
     def find_events(band_id)
       response = self.class.get("/artists/" + "#{band_id}" +"/calendar.json",
                  query: { apikey: ENV['SONGKICK_KEY'] })
-      return response.body
+      return response.to_hash
     end
   end
 end
