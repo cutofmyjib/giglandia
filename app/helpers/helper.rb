@@ -5,7 +5,7 @@ helpers do
   end
 
   def init_songkick
-    Songkick::Client.new
+    @songkick ||= Songkick::Client.new
   end
 
   def get_songkick_name(band_ids)

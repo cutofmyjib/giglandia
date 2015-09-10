@@ -27,7 +27,7 @@
                 <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
               </div>
             <% end %>
-            <h2><%= band["displayName"] %><span class="ui-li-count">12</span></h2>
+            <h2><%= band["displayName"] %><span class="ui-li-count"><%= @gig_count[index] %></span></h2>
           </a>
         </li>
       <% end %>
