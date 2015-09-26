@@ -1,12 +1,12 @@
-<div data-role="content" class="content">
-  <div role="main" class="ui-content">
-    <div class="article">
+<div data-role="content" id="band">
+  <div data-role="main" class="ui-content">
+    <a href="#" class="ui-btn" data-rel="back">back</a>
       <h1>
         <%= @band.display_name %>
 
         <a href="/bands/<%=@band.id%>/follow" data-role="button" data-inline="true" data-theme="b" data-icon="plus" data-iconpos="notext">Follow</a>
       </h1>
-    </div>
+
     <% if @events.length > 0 %>
       <h4>Upcoming Concerts</h4>
       <% @events.map do |event| %>
