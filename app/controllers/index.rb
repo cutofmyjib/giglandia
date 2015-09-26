@@ -89,11 +89,16 @@ post '/bands' do
 end
 
 get '/bands/:band_id/follow' do
-  @user = current_user
-  @user.follow(params[:band_id].to_i)
-  fave_band_ids = @user.bands.map(&:songkick_id)
-  @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
-  erb :show
+  if current_user
+    @user = current_user
+    @user.follow(params[:band_id].to_i)
+    fave_band_ids = @user.bands.map(&:songkick_id)
+    @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
+    erb :show
+  else
+    @errors = ["you need to sign up or sign in to save a favorite"]
+    erb :index
+  end
 end
 
 get '/bands/:band_id' do
