@@ -1,6 +1,11 @@
 <div data-role="content" class="content">
-
   <div class="center-block">
+    <% if @errors %>
+      <% @errors.each do |error| %>
+      <p><input type="text" data-theme="e" value="<%= error %>" /></p>
+      <% end %>
+    <% end %>
+
     <h1>Welcome to giglandia</h1>
     <p>You can search for a band, sign up and save your favorites so you can check them out later</p>
     <form method="post" action="/bands">
