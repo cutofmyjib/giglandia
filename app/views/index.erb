@@ -1,18 +1,19 @@
 <div data-role="content" class="content">
   <div class="center-block">
+    <h1>Welcome to giglandia</h1>
+    <p>You can search for a band, sign up and save your favorites so you can check them out later</p>
+
     <% if @errors %>
       <% @errors.each do |error| %>
       <p><input type="text" data-theme="e" value="<%= error %>" /></p>
       <% end %>
     <% end %>
 
-    <h1>Welcome to giglandia</h1>
-    <p>You can search for a band, sign up and save your favorites so you can check them out later</p>
     <form method="post" action="/bands">
       <input type="search" name="band_name" id="search-mini" value="" data-mini="true" />
     </form>
 
-    <a href="sessions/new" class="ui-btn ui-btn-inline">Sign In</a>
-<a href="users/new" class="ui-btn ui-btn-inline">Sign Up</a>
+    <a href="/sessions/new" class="ui-btn ui-btn-inline">Sign In</a>
+    <a href="/users/new" class="ui-btn ui-btn-inline">Sign Up</a>
   </div>
 </div>
