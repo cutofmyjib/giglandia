@@ -1,5 +1,4 @@
 helpers do
-
   #give_token in the bcrypt doc
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -29,4 +28,8 @@ helpers do
     @user = User.find(session[:user_id])
   end
 
+  def is_fave(band_id)
+    user = find_user_id
+    user.bands.where(songkick_id: band_id).first
+  end
 end

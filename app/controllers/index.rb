@@ -105,5 +105,6 @@ get '/bands/:band_id' do
   @band = get_songkick_name([params[:band_id]]).first
   band_events = get_events(@band.display_name)
   @events = band_events.results
+  @fav = is_fave(@band.id)
   erb :show_band
 end
