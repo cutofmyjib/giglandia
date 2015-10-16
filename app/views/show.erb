@@ -1,11 +1,14 @@
 <div data-role="content" class="content">
-  <h1> This is the profile page
-  <small>Hi <%= @user.username %></small></h1>
+  <h1> Hi <%= @user.username %></h1>
   <% if @bands %>
       <h4>Bands you follow</h4>
       <% @bands.each do |band| %>
-      <p><a href="/bands/<%= band.id %>"><%= band.display_name %></a>
+      <p>
+        <a href="/bands/<%= band.id %>"><%= band.display_name %></a>
+      </p>
     <% end %>
+  <% else %>
+    <p>Looks like you currently don't have any favorites, click <a href="/bands">here</a> to start adding your favorite bands now!</p>
   <% end %>
 </div>
 
