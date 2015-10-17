@@ -1,10 +1,10 @@
 <div data-role="content" id="band">
   <div data-role="main" class="ui-content">
-    <a href="#" class="ui-btn" data-rel="back">back</a>
+    <div class="favebands">
       <h1>
         <%= @band.display_name %>
-
-        <a href="/bands/<%=@band.id%>/follow" data-role="button" data-inline="true" data-theme="b" data-icon="plus" data-iconpos="notext">Follow</a>
+        <button data-band="<%=@band.id%>" data-role="button" data-inline="true" data-theme="b" data-icon="minus" data-iconpos="notext" class="favebutton minus <%= @fav ? '' : 'hidden' %>">Unfollow</button>
+        <button data-band="<%=@band.id%>" data-role="button" data-inline="true" data-theme="b" data-icon="plus" data-iconpos="notext" class="favebutton plus <%= @fav ? 'hidden' : '' %>">Follow</button>
       </h1>
 
     <% if @events.length > 0 %>
@@ -15,5 +15,6 @@
       </div>
       <% end %>
     <% end %>
+  </div>
   </div>
 </div>
