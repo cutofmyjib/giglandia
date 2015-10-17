@@ -20,13 +20,13 @@
   <body>
   <div data-role="page">
   <div data-role="panel" id="left-panel" data-theme="d">
-    <ul data-theme="c" data-role="listview" data-inset="true" data-add-back-btn="true">
+    <ul data-role="listview" data-inset="true">
       <li><a href="/bands">Find bands</a></li>
       <% if current_user %>
       <li>
         <a href="/sessions/<%= current_user.id %>">Sign out</a>
       </li>
-      <li><a href="/users/<%= current_user.id%>">My Profile</a></li>
+      <li><a href="/users/<%= current_user.id%>" data-ajax="false">My Profile</a></li>
       <% else %>
       <li><a href="/users/new">Sign Up</a></li>
       <li><a href="/sessions/new">Sign In</a></li>
