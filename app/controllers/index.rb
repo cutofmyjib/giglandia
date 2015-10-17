@@ -88,10 +88,24 @@ post '/bands' do
   erb :bands
 end
 
-get '/bands/:band_id/follow' do
+post '/bands/:band_id/follow' do
   if current_user
     @user = current_user
     @user.follow(params[:band_id].to_i)
+    if request.xhr?
+      # (erb :show).to_json
+      {status: true}.to_json
+    else
+      redirect "/bands/#{:band_id}/follow"
+    end
+  else
+  end
+end
+
+
+get '/bands/:band_id/follow' do
+  if current_user
+    @user = current_user
     fave_band_ids = @user.bands.map(&:songkick_id)
     @bands = get_songkick_name(fave_band_ids) if fave_band_ids.length > 0
     erb :show
