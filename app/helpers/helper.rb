@@ -38,4 +38,8 @@ helpers do
     end
     thumbnails
   end
+
+  def partial(template, locals={})
+    erb(template, :layout => false, :locals => locals)
+  end
 end
