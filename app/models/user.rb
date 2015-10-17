@@ -18,12 +18,20 @@ class User < ActiveRecord::Base
 
   def follow(band_id)
     fav = Band.where(songkick_id: band_id).first
-    user_fav = self.bands.where(songkick_id: band_id).first
+    is_fave = self.bands.where(songkick_id: band_id).first
     if fav
-      self.bands << fav unless user_fav
+      self.bands << fav unless is_fave
     else
       fav = Band.create(songkick_id: band_id)
       self.bands << fav
+    end
+  end
+
+  def unfollow(band_id)
+    fav = Band.where(songkick_id: band_id).first
+    is_fave = self.bands.where(songkick_id: band_id).first
+    if fav && is_fave
+      is_fave.destroy
     end
   end
 
