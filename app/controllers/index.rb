@@ -91,14 +91,23 @@ end
 post '/bands/:band_id/follow' do
   if current_user
     @user = current_user
-    @user.follow(params[:band_id].to_i)
+    fav = is_fave(params[:band_id].to_i)
+    if fav
+      @user.unfollow(params[:band_id].to_i)
+    else
+      @user.follow(params[:band_id].to_i)
+    end
+
     if request.xhr?
       # (erb :show).to_json
-      {status: true}.to_json
+      #return opposite
+      {status: !fav}.to_json
     else
-      redirect "/bands/#{:band_id}/follow"
+      redirect "/bands/#{params[:band_id]}/follow"
     end
   else
+    @errors = ["you need to sign up or sign in to save a favorite"]
+    erb :index
   end
 end
 
