@@ -3,9 +3,7 @@
   <% if @bands %>
       <h4>Bands you follow</h4>
       <% @bands.each do |band| %>
-      <p>
-        <a href="/bands/<%= band.id %>"><%= band.display_name %></a>
-      </p>
+      <%= partial(:_show, band: band) %>
     <% end %>
   <% else %>
     <p>Looks like you currently don't have any favorites, click <a href="/bands">here</a> to start adding your favorite bands now!</p>
