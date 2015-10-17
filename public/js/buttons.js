@@ -1,15 +1,26 @@
 $(document).ready(function() {
-
-  // $('.list-group').hide();
-  // $('.panel-heading').click(function() {
-  //   $('.list-group').toggle();
-  // });
-  //  $('.panel-heading').mouseover(function() {
-  //   $(this).css('background-color', '#7AA9DD');
-  //   $(this).css('border-color', '#7AA9DD');
-  // });
-  //  $('.panel-heading').mouseout(function() {
-  //   $(this).css('background-color', '#337ab7');
-  //   });
-
+  faveButton();
 });
+
+function faveButton(){
+  $('.favebands').on('click', '.favebutton', function(e){
+    e.preventDefault();
+
+    var bandId = $('.favebutton.plus').data('band');
+    var request = $.ajax({
+      url: "/bands/" + bandId + "/follow",
+      type: "POST",
+      dataType: "json"
+    });//end ajax
+
+    request.done(function(response){
+      if(response.status){
+        $('.favebutton.plus').addClass('hidden');
+        $('.favebutton.minus').removeClass('hidden');
+      } else {
+        $('.favebutton.plus').removeClass('hidden');
+        $('.favebutton.minus').addClass('hidden');
+      }
+    });//end done
+  });
+}
