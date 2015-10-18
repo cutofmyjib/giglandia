@@ -26,7 +26,7 @@
       <li>
         <a href="/sessions/<%= current_user.id %>">Sign out</a>
       </li>
-      <li><a href="/users/<%= current_user.id%>" data-ajax="false">My Profile</a></li>
+      <li data-icon="star"><a href="/users/<%= current_user.id%>" data-ajax="false">My Favorites</a></li>
       <% else %>
       <li><a href="/users/new">Sign Up</a></li>
       <li><a href="/sessions/new">Sign In</a></li>
