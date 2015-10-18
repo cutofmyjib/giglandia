@@ -28,7 +28,7 @@ group :test do
   gem 'rack-test'
 end
 
-group :test, :development do
+group :development do
   gem 'rspec'
   gem 'factory_girl'
   gem 'faker'

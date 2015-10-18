@@ -1,13 +1,4 @@
 require 'rake'
-begin
-  require "rspec/core/rake_task"
-  desc "Run all examples"
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = %w[--color]
-    t.pattern = 'spec/**/*_spec.rb'
-  end
-rescue LoadError
-end
 
 require ::File.expand_path('../config/environment', __FILE__)
 
@@ -147,7 +138,13 @@ task "console" do
   exec "irb -r./config/environment"
 end
 
-desc "Run the specs"
-RSpec::Core::RakeTask.new(:spec)
+# In a production environment like Heroku, RSpec might not
+# be available.  To handle this, rescue the LoadError.
+# https://devcenter.heroku.com/articles/getting-started-with-ruby-o#runtime-dependencies-on-development-test-gems
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
+end
 
 task :default  => :spec

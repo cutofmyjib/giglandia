@@ -10,6 +10,7 @@ ENV['RACK_ENV'] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'shoulda-matchers'
 require 'rack/test'
+require 'rspec'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
