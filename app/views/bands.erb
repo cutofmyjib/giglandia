@@ -22,11 +22,6 @@
       <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
         <li>
           <a href="/bands/<%=band['id']%>">
-            <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
-              <div class="thumbnail">
-                <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
-              </div>
-            <% end %>
             <h2><%= band["displayName"] %><span class="ui-li-count"><%= @gig_count[index] %></span></h2>
           </a>
         </li>
@@ -34,3 +29,15 @@
       </ul>
   <% end %>
 </div>
+
+<%
+=begin
+%>
+  <% if @thumbnails[index] && @thumbnails[index].length > 0 %>
+    <div class="thumbnail">
+      <img src="<%=@thumbnails[index][0].attrs[:url]%>" />
+    </div>
+  <% end %>
+<%
+=end
+%>

@@ -1,8 +1,8 @@
-##giglandia
+## giglandia
 A small app that lets a user:
 - sign in or sign up
 - follow a band or bands
-- lets the user see bands' upcoming shows
+- lets user see a band's upcoming shows
 
 [Check it out here](http://giglandia.herokuapp.com/)
 
