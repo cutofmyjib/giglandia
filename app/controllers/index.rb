@@ -77,12 +77,12 @@ post '/bands' do
     @errors = ["band not found"]
   end
 
-  if band_ids.length > 0 && band_ids.length < 20
-    @thumbnails = get_thumbnails(band_ids)
-  else
-    shorter_band_ids = band_ids.slice(0, 15)
-    @thumbnails = get_thumbnails(shorter_band_ids)
-  end
+  # if band_ids.length > 0 && band_ids.length < 20
+  #   @thumbnails = get_thumbnails(band_ids)
+  # else
+  #   shorter_band_ids = band_ids.slice(0, 15)
+  #   @thumbnails = get_thumbnails(shorter_band_ids)
+  # end
 
   @gig_count = get_gig_count(band_ids)
   erb :bands
