@@ -49,9 +49,3 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 require APP_ROOT.join('config', 'database')
 
 Dotenv.load
-
-Echowrap.configure do |config|
-  config.api_key =       ENV['ECHONEST_API']
-  config.consumer_key =  ENV['ECHONEST_CONSUMER']
-  config.shared_secret = ENV['ECHONEST_SECRET']
-end
