@@ -9,7 +9,6 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'rubygems'
 require 'dotenv'
 require 'songkickr'
-require 'echowrap'
 
 require 'uri'
 require 'pathname'
