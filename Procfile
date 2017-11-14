@@ -1,1 +1,1 @@
-web: shotgun config.ru
+web: bundle exec ruby config.ru -p $PORT
