@@ -1,1 +1,1 @@
-web: bundle exec ruby config.ru -p $PORT
+web: bundle exec puma -C config/environment.rb
