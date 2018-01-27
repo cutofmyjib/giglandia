@@ -18,7 +18,7 @@
   </div>
 
   <% if @bands && @bands["resultsPage"]["results"] %>
-    <% if @bands["resultsPage"]["results"].length > 0 %>
+    <% if @bands["resultsPage"]["results"].to_s.length > 0 %>
       <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
       <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
         <li>
