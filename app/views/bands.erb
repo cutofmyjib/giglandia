@@ -17,7 +17,8 @@
     <div class="ui-block-d"><img src="/songkick.png" /></div>
   </div>
 
-  <% if @bands && @bands["resultsPage"]["results"].length > 0 %>
+  <% if @bands && @bands["resultsPage"]["results"] %>
+    <% if @bands["resultsPage"]["results"].length > 0 %>
       <ul data-role="listview" data-inset="true" data-count-theme="b" class="odd-thumb">
       <% @bands["resultsPage"]["results"]["artist"].each_with_index do |band,index| %>
         <li>
@@ -27,6 +28,7 @@
         </li>
       <% end %>
       </ul>
+    <% end %>
   <% end %>
 </div>
 
