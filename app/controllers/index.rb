@@ -69,9 +69,11 @@ post '/bands' do
   bands = init_songkick
   @bands = bands.find_artist(params[:band_name])
   band_ids = []
-  if @bands["resultsPage"]["results"].length > 0
-    @bands["resultsPage"]["results"]["artist"].map do |band|
-      band_ids.push(band["id"])
+  if @bands && @bands["resultsPage"]["results"]
+    if @bands["resultsPage"]["results"].length > 0
+      @bands["resultsPage"]["results"]["artist"].map do |band|
+        band_ids.push(band["id"])
+      end
     end
   else
     @errors = ["band not found"]
