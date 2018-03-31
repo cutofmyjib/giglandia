@@ -10,5 +10,23 @@ FYI: this is a very slow app!!!
 I used Jquery mobile to get the look up and running. I used the [Songkick API](http://www.songkick.com/developer) to get information about artists.
 
 
+# run locally
+```
+gem install bundler
+
+bundle install ??
+
 shotgun config.ru
+
 localhost:9393
+```
+
+# heroku notes:
+need procfile to deploy to heroku
+
+run `heroku logs` to see logs
+use `heroku config:set ...` for env vars
+`heroku restart`
+`heroku pg:reset DATABASE_URL`
+
+
